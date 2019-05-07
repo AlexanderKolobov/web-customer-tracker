@@ -2,3 +2,4 @@
 *.iml
 out/
 /web/WEB-INF/lib/
+/META-INF/
