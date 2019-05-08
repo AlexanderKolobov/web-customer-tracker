@@ -38,12 +38,17 @@ public class CustomerController
         customerService.saveCustomer( customer );
         return "redirect:/customer/list";
     }
-
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate( @RequestParam("customerId") int id, Model model ){
         Customer customer = customerService.getCustomer( id );
         model.addAttribute( "customer", customer );
         return "customer-form";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("customerId") int id ) {
+        customerService.deleteCustomer( id );
+        return "redirect:/customer/list";
     }
 
 }
