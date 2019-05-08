@@ -52,4 +52,22 @@ public class CustomerDAOImpl implements CustomerDAO
                .executeUpdate();
 
     }
+
+    @Override
+    public List<Customer> searchCustomers( String searchName )
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Customer> query;
+
+        if( searchName != null && searchName.trim().length() > 0 )
+        {
+            query = session.createQuery( "from Customer  where lower(firstName) like :searchName or lower(lastName) like : searchName", Customer.class )
+                    .setParameter( "searchName", "%" + searchName.toLowerCase() + "%" );
+        }
+        else
+        {
+            query = session.createQuery( "from Customer ", Customer.class );
+        }
+        return query.getResultList();
+    }
 }
