@@ -1,5 +1,5 @@
 .idea/
 *.iml
 out/
-/web/WEB-INF/lib/
+/target/
 /META-INF/
